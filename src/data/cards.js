@@ -1,19 +1,37 @@
 export const CHANCE_CARDS = [
-    { id: 'c1', text: "Advance to GO", action: 'MOVE', value: 0 },
-    { id: 'c2', text: "Advance to Trafalgar Square", action: 'MOVE', value: 24 },
-    { id: 'c3', text: "Go back 3 spaces", action: 'MOVE_RELATIVE', value: -3 },
-    { id: 'c4', text: "Bank pays you dividend of £50", action: 'RECEIVE', value: 50 },
-    { id: 'c5', text: "Go to Jail", action: 'JAIL' },
-    { id: 'c6', text: "Get Out of Jail Free", action: 'GOJF' },
-    { id: 'c7', text: "Make general repairs: £25 per house, £100 per hotel", action: 'REPAIRS', house: 25, hotel: 100 },
-    // ... (Full deck of 16)
+    { text: "Advance to GO", action: 'MOVE', value: 0 }, // [cite: 102, 110]
+    { text: "Advance to Trafalgar Square", action: 'MOVE', value: 24 }, // [cite: 103]
+    { text: "Advance to Pall Mall", action: 'MOVE', value: 11 }, // [cite: 103]
+    { text: "Advance to nearest Utility. If unowned, you may buy. If owned, throw dice and pay 10x the amount.", action: 'MOVE_NEAREST', type: 'utility' }, // [cite: 103]
+    { text: "Advance to nearest Station and pay owner twice the rental.", action: 'MOVE_NEAREST', type: 'station' }, // [cite: 103]
+    { text: "Bank pays you dividend of £50", action: 'RECEIVE', value: 50 }, // [cite: 105]
+    { text: "Get Out of Jail Free", action: 'GOJF' }, // [cite: 106]
+    { text: "Go back 3 spaces", action: 'MOVE_RELATIVE', value: -3 }, // [cite: 109, 110]
+    { text: "Go directly to Jail", action: 'JAIL' }, // [cite: 119]
+    { text: "Make general repairs on all your property: For each house pay £25, For each hotel £100", action: 'REPAIRS', house: 25, hotel: 100 }, // [cite: 104]
+    { text: "Pay poor tax of £15", action: 'PAY', value: 15 }, // [cite: 104]
+    { text: "Take a trip to Marylebone Station", action: 'MOVE', value: 15 }, // [cite: 103]
+    { text: "Advance to Mayfair", action: 'MOVE', value: 39 }, // [cite: 103]
+    { text: "You have been elected Chairman of the Board: Pay each player £50", action: 'PAY_PLAYERS', value: 50 }, // [cite: 104]
+    { text: "Your building loan matures: Collect £150", action: 'RECEIVE', value: 150 }, // [cite: 105]
+    { text: "You have won a crossword competition: Collect £100", action: 'RECEIVE', value: 100 } // [cite: 105]
 ];
 
 export const COMMUNITY_CHEST_CARDS = [
-    { id: 'cc1', text: "Advance to GO", action: 'MOVE', value: 0 },
-    { id: 'cc2', text: "Bank error in your favour: Collect £200", action: 'RECEIVE', value: 200 },
-    { id: 'cc3', text: "Doctor's fee: Pay £50", action: 'PAY', value: 50 },
-    { id: 'cc4', text: "It is your birthday: Collect £10 from every player", action: 'BIRTHDAY', value: 10 },
-    { id: 'cc5', text: "Get Out of Jail Free", action: 'GOJF' },
-    // ... (Full deck of 16)
+    { text: "Advance to GO", action: 'MOVE', value: 0 }, // [cite: 102]
+    { text: "Bank error in your favour: Collect £200", action: 'RECEIVE', value: 200 }, // [cite: 105]
+    { text: "Doctor's fee: Pay £50", action: 'PAY', value: 50 }, // [cite: 104]
+    { text: "From sale of stock you get £50", action: 'RECEIVE', value: 50 }, // [cite: 105]
+    { text: "Get Out of Jail Free", action: 'GOJF' }, // [cite: 106]
+    { text: "Go directly to Jail", action: 'JAIL' }, // [cite: 119]
+    { text: "Grand Opera Night: Collect £50 from every player for opening night seats", action: 'BIRTHDAY', value: 50 }, // [cite: 105]
+    { text: "Holiday Fund matures: Receive £100", action: 'RECEIVE', value: 100 }, // [cite: 105]
+    { text: "Income tax refund: Collect £20", action: 'RECEIVE', value: 20 }, // [cite: 105]
+    { text: "It is your birthday: Collect £10 from every player", action: 'BIRTHDAY', value: 10 }, // [cite: 105]
+    { text: "Life insurance matures: Collect £100", action: 'RECEIVE', value: 100 }, // [cite: 105]
+    { text: "Pay hospital £100", action: 'PAY', value: 100 }, // [cite: 104]
+    { text: "Pay school fees of £150", action: 'PAY', value: 150 }, // [cite: 104]
+    { text: "Receive £25 consultancy fee", action: 'RECEIVE', value: 25 }, // [cite: 105]
+    { text: "You are assessed for street repairs: £40 per house, £115 per hotel", action: 'REPAIRS', house: 40, hotel: 115 }, // [cite: 104]
+    { text: "You have inherited £100", action: 'RECEIVE', value: 100 } // [cite: 105]
 ];
