@@ -81,5 +81,51 @@ export const useGameActions = (gameState, updateState, playerId) => {
         return property.rent[property.houses];
     };
 
-    return { handleBuild, checkMonopoly, calculateRent };
+    const handleBankruptcy = async (debtorId, creditorId) => {
+        const players = [...gameState.players];
+        const board = [...gameState.boardStates];
+        const debtor = players.find(p => p.id === debtorId);
+        const creditor = creditorId !== 'BANK' ? players.find(p => p.id === creditorId) : null;
+
+        // 1. Sell buildings back to bank at half price [cite: 151]
+        const debtorProps = board.filter(p => p.owner === debtorId);
+        debtorProps.forEach(prop => {
+            if (prop.houses > 0) {
+                const refund = (prop.houses * prop.houseCost) / 2;
+                debtor.money += refund;
+                prop.houses = 0;
+                prop.hotel = false;
+            }
+        });
+
+        // 2. Transfer Assets
+        if (creditor) {
+            // Made bankrupt by another player [cite: 175]
+            creditor.money += debtor.money;
+            debtorProps.forEach(prop => {
+                prop.owner = creditorId;
+                // Note: Creditor must handle 10% mortgage fee immediately if transferred property is mortgaged [cite: 177]
+            });
+            creditor.getOutOfJailCards += debtor.getOutOfJailCards;
+        } else {
+            // Made bankrupt by the Bank [cite: 172]
+            debtorProps.forEach(prop => {
+                prop.owner = null;
+                prop.mortgaged = false;
+                // Banker then auctions each property [cite: 173]
+            });
+        }
+
+        debtor.isBankrupt = true;
+        debtor.money = 0;
+
+        await updateState({
+            ...gameState,
+            players,
+            boardStates: board,
+            logs: [`${debtor.name} is BANKRUPT!`, ...gameState.logs]
+        });
+    };
+
+    return { handleBuild, checkMonopoly, calculateRent, handleBankruptcy };
 };
